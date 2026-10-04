@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Text Similarity System</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Text Similarity System</h1>
+
+        <p class="subtitle">
+            Compare two texts and measure their similarity.
+        </p>
+
+        <form method="POST">
+
+            <div class="text-section">
+
+                <div class="input-box">
+                    <label for="text1">Text 1</label>
+
+                    <textarea
+                        id="text1"
+                        name="text1"
+                        placeholder="Enter the first text..."
+                        required
+                    >{{ text1 }}</textarea>
+                </div>
+
+                <div class="input-box">
+                    <label for="text2">Text 2</label>
+
+                    <textarea
+                        id="text2"
+                        name="text2"
+                        placeholder="Enter the second text..."
+                        required
+                    >{{ text2 }}</textarea>
+                </div>
+
+            </div>
+
+            <button type="submit">
+                Compare Texts
+            </button>
+
+        </form>
+
+        {% if similarity is not none %}
+
+        <div class="result">
+
+            <h2>Similarity Result</h2>
+
+            <div class="percentage">
+                {{ similarity }}%
+            </div>
+
+            <p class="status">
+                {{ result }}
+            </p>
+
+            <div class="bar-container">
+                <div
+                    class="bar"
+                    style="width: {{ similarity }}%;"
+                ></div>
+            </div>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</body>
+
+</html>
